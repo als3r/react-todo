@@ -1,3 +1,11 @@
+import PropTypes from 'prop-types'
+
+TopMenuItem.propTypes = {
+  id: PropTypes.number,
+  title: PropTypes.string,
+  route: PropTypes.string,
+}
+
 function TopMenuItem({ id, title, route }) {
   return (
     <li key={id} className="top-nav__item">

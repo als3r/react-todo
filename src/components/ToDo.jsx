@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import ToDoList from './ToDoList'
 
 function ToDo() {
@@ -9,28 +9,19 @@ function ToDo() {
   ) {
     storedToDoData = JSON.parse(localStorage.getItem('toDoData'))
   }
+
   let storedToDolastId = 0
   if (
     localStorage.getItem('toDoLastId') !== null &&
     localStorage.getItem('toDoLastId') !== undefined
   ) {
-    storedToDolastId = parseInt(localStorage.getItem('toDoLastId'))
+    storedToDolastId = parseInt(localStorage.getItem('toDoLastId'), 10)
   }
 
   const [toDoData, setToDoData] = useState(storedToDoData)
   const [toDoLastId, setToDoLastId] = useState(storedToDolastId)
   const [toDoInput, setToDoInput] = useState('')
   const [toDoHiddenIdInput, setToDoHiddenIdInput] = useState('')
-
-  const useFocus = () => {
-    const htmlElRef = useRef(null)
-    const setFocus = () => {
-      htmlElRef.current && htmlElRef.current.focus()
-    }
-
-    return [htmlElRef, setFocus]
-  }
-  const [toDoInputRef, setInputFocus] = useFocus()
 
   const handleSubmitToDoListForm = (event) => {
     event.preventDefault()
@@ -39,16 +30,21 @@ function ToDo() {
     }
 
     let isUpdate = false
-    if (toDoHiddenIdInput !== '' && parseInt(toDoHiddenIdInput) >= 0) {
+    if (toDoHiddenIdInput !== '' && parseInt(toDoHiddenIdInput, 10) >= 0) {
       isUpdate = true
     }
 
     if (isUpdate) {
-      const editedId = parseInt(toDoHiddenIdInput)
+      const editedId = parseInt(toDoHiddenIdInput, 10)
       toDoData.map((item) => {
         if (item.id === editedId) {
-          return (item.description = toDoInput)
+          const newToDo = {}
+          newToDo.id = item.id
+          newToDo.description = toDoInput
+          newToDo.status = item.status
+          return newToDo
         }
+        return item
       })
       saveToDoData(toDoData)
     } else {
@@ -57,47 +53,54 @@ function ToDo() {
         description: toDoInput,
         status: false,
       }
-      console.log(newToDo)
       toDoData.push(newToDo)
       saveToDoData(toDoData)
       setToDoLastId(toDoLastId + 1)
-      localStorage.setItem('toDoLastId', parseInt(toDoLastId + 1))
+      localStorage.setItem('toDoLastId', parseInt(toDoLastId + 1, 10))
     }
 
     setToDoInput('')
     setToDoHiddenIdInput('')
+    return true
   }
 
   const handleToDoStatusChange = (event) => {
     const isChecked = event.target.checked
-    const itemId = parseInt(event.target.getAttribute('data-id'))
+    const itemId = parseInt(event.target.getAttribute('data-id'), 10)
 
     toDoData.map((item) => {
       if (item.id === itemId) {
-        return (item.status = isChecked)
+        const newToDo = {}
+        newToDo.id = item.id
+        newToDo.description = item.description
+        newToDo.status = isChecked
+        return newToDo
       }
+      return item
     })
     saveToDoData(toDoData)
   }
 
   const handleToDoDescriptionChange = (event) => {
-    const itemId = parseInt(event.target.getAttribute('data-id'))
+    const itemId = parseInt(event.target.getAttribute('data-id'), 10)
     const description = event.target.value
 
     toDoData.map((item) => {
       if (item.id === itemId) {
-        console.log(item.description)
-        return (item.description = description)
+        const newToDo = {}
+        newToDo.id = item.id
+        newToDo.description = description
+        newToDo.status = item.status
+        return newToDo
       }
+      return item
     })
     saveToDoData(toDoData)
   }
 
   const handleRemoveToDo = (event) => {
-    const id = parseInt(event.target.getAttribute('data-id'))
+    const id = event.target.getAttribute('data-id')
     const toDoDataArr = toDoData.filter((item) => item.id !== id)
-    console.log(id)
-    console.log(toDoDataArr)
     saveToDoData(toDoDataArr)
   }
 
@@ -120,14 +123,17 @@ function ToDo() {
       >
         <input
           type="text"
-          ref={toDoInputRef}
           className="todolist__input"
           placeholder="Enter todo here ..."
           value={toDoInput}
           onChange={handleToDoInputChange}
         />
         <input type="hidden" value={toDoHiddenIdInput} />
-        <button className="todolist__add" onClick={handleSubmitToDoListForm}>
+        <button
+          type="button"
+          className="todolist__add"
+          onClick={handleSubmitToDoListForm}
+        >
           Add
         </button>
       </form>

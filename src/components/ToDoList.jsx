@@ -1,4 +1,12 @@
+import PropTypes from 'prop-types'
 import ToDoListItem from './ToDoListItem'
+
+ToDoList.propTypes = {
+  toDoData: PropTypes.array,
+  handleToDoStatusChange: PropTypes.func,
+  handleToDoDescriptionChange: PropTypes.func,
+  handleRemoveToDo: PropTypes.func,
+}
 
 function ToDoList({
   toDoData,

@@ -1,4 +1,13 @@
-import { useState } from 'react'
+import PropTypes from 'prop-types'
+
+ToDoListItem.propTypes = {
+  id: PropTypes.number,
+  description: PropTypes.string,
+  status: PropTypes.bool,
+  handleToDoStatusChange: PropTypes.func,
+  handleToDoDescriptionChange: PropTypes.func,
+  handleRemoveToDo: PropTypes.func,
+}
 
 function ToDoListItem({
   id,
@@ -29,6 +38,7 @@ function ToDoListItem({
         onChange={handleToDoDescriptionChange}
       />
       <button
+        type="button"
         className="todolist__button-remove"
         data-id={id}
         onClick={handleRemoveToDo}

@@ -1,4 +1,5 @@
 import { useMemo } from 'react'
+import TopMenuItem from './TopMenuItem'
 
 function TopMenu() {
   const menuItems = [
@@ -21,16 +22,6 @@ function TopMenu() {
     <div className="nav">
       <ul className="top-nav">{menuItemsRendered}</ul>
     </div>
-  )
-}
-
-function TopMenuItem({ id, title, route }) {
-  return (
-    <li key={id} className="top-nav__item">
-      <a href={route} className="top-nav__item-link">
-        {title}
-      </a>
-    </li>
   )
 }
 
