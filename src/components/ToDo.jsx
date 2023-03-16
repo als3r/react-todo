@@ -3,19 +3,13 @@ import ToDoList from './ToDoList'
 
 function ToDo() {
   let storedToDoData = []
-  if (
-    localStorage.getItem('toDoData') !== null &&
-    localStorage.getItem('toDoData') !== undefined
-  ) {
-    storedToDoData = JSON.parse(localStorage.getItem('toDoData'))
+  if (localStorage.getItem('toDoData')) {
+    storedToDoData = JSON.parse(localStorage.getItem('toDoData')) ?? []
   }
 
   let storedToDolastId = 0
-  if (
-    localStorage.getItem('toDoLastId') !== null &&
-    localStorage.getItem('toDoLastId') !== undefined
-  ) {
-    storedToDolastId = parseInt(localStorage.getItem('toDoLastId'), 10)
+  if (localStorage.getItem('toDoLastId')) {
+    storedToDolastId = parseInt(localStorage.getItem('toDoLastId'), 10) ?? 1
   }
 
   const [toDoData, setToDoData] = useState(storedToDoData)
@@ -96,7 +90,7 @@ function ToDo() {
   }
 
   const handleRemoveToDo = (event) => {
-    const id = event.target.getAttribute('data-id')
+    const id = parseInt(event.target.getAttribute('data-id'), 10)
     const toDoDataArr = toDoData.filter((item) => item.id !== id)
     saveToDoData(toDoDataArr)
   }
