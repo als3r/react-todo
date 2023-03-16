@@ -33,7 +33,9 @@ function ToDoListItem({
         <>
           <input
             type="text"
-            className="todolist__item-input"
+            className={`todolist__item-input ${
+              status ? 'todolist__item-input--done' : ''
+            }`}
             data-id={id}
             defaultValue={description}
             onChange={handleToDoDescriptionChange}
@@ -50,7 +52,10 @@ function ToDoListItem({
       )}
 
       {!toDoEditMode && (
-        <label htmlFor={`todo-list-item-${id}`} className="todolist__label">
+        <label
+          htmlFor={`todo-list-item-${id}`}
+          className={`todolist__label ${status ? 'todolist__label--done' : ''}`}
+        >
           {description}
         </label>
       )}

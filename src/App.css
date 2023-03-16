@@ -102,6 +102,10 @@
   line-height: 40px;
 }
 
+.todolist__label--done {
+  text-decoration: line-through;
+}
+
 .todolist__checkbox {
   width: 36px;
   height: 36px;
@@ -123,6 +127,10 @@
   width: 100%;
   padding: 3px 5px;
   font-size: 20px;
+}
+
+.todolist__item-input--done {
+  text-decoration: line-through;
 }
 
 .todolist__item-input:focus {
