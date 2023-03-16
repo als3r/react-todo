@@ -129,3 +129,20 @@
   border: 0;
   outline: none;
 }
+
+.todolist__edit-mode {
+  text-align: right;
+  padding: 5px 0 15px;
+}
+
+.todolist__edit-mode-label {
+  font-size: 18px;
+  text-align: right;
+}
+
+.todolist__edit-mode-checkbox {
+  width: 16px;
+  height: 16px;
+  line-height: 20px;
+  margin-left: 5px;
+}

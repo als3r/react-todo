@@ -22,6 +22,11 @@ function ToDo() {
   const [toDoLastId, setToDoLastId] = useState(storedToDolastId)
   const [toDoInput, setToDoInput] = useState('')
   const [toDoHiddenIdInput, setToDoHiddenIdInput] = useState('')
+  const [toDoEditMode, setToDoEditMode] = useState(false)
+
+  const handleToDoEditModeChange = (event) => {
+    setToDoEditMode(event.target.checked)
+  }
 
   const handleSubmitToDoListForm = (event) => {
     event.preventDefault()
@@ -68,34 +73,26 @@ function ToDo() {
     const isChecked = event.target.checked
     const itemId = parseInt(event.target.getAttribute('data-id'), 10)
 
-    toDoData.map((item) => {
+    const toDoDataArr = toDoData.map((item) => {
       if (item.id === itemId) {
-        const newToDo = {}
-        newToDo.id = item.id
-        newToDo.description = item.description
-        newToDo.status = isChecked
-        return newToDo
+        item.status = isChecked
       }
       return item
     })
-    saveToDoData(toDoData)
+    saveToDoData(toDoDataArr)
   }
 
   const handleToDoDescriptionChange = (event) => {
     const itemId = parseInt(event.target.getAttribute('data-id'), 10)
     const description = event.target.value
 
-    toDoData.map((item) => {
+    const toDoDataArr = toDoData.map((item) => {
       if (item.id === itemId) {
-        const newToDo = {}
-        newToDo.id = item.id
-        newToDo.description = description
-        newToDo.status = item.status
-        return newToDo
+        item.description = description
       }
       return item
     })
-    saveToDoData(toDoData)
+    saveToDoData(toDoDataArr)
   }
 
   const handleRemoveToDo = (event) => {
@@ -116,6 +113,21 @@ function ToDo() {
   return (
     <div className="todolist__container">
       <h4 className="todolist__header">To do or not to do</h4>
+      <div className="todolist__edit-mode">
+        <label
+          className="todolist__edit-mode-label"
+          htmlFor="todoEditModeInput"
+        >
+          Edit Mode
+          <input
+            type="checkbox"
+            id="todoEditModeInput"
+            className="todolist__edit-mode-checkbox"
+            defaultValue={toDoEditMode}
+            onChange={handleToDoEditModeChange}
+          />
+        </label>
+      </div>
       <form
         action="/"
         className="todolist__form"
@@ -139,6 +151,7 @@ function ToDo() {
       </form>
       <ToDoList
         toDoData={toDoData}
+        toDoEditMode={toDoEditMode}
         handleToDoStatusChange={handleToDoStatusChange}
         handleToDoDescriptionChange={handleToDoDescriptionChange}
         handleRemoveToDo={handleRemoveToDo}

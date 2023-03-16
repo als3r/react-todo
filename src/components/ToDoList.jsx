@@ -3,6 +3,7 @@ import ToDoListItem from './ToDoListItem'
 
 ToDoList.propTypes = {
   toDoData: PropTypes.array,
+  toDoEditMode: PropTypes.bool,
   handleToDoStatusChange: PropTypes.func,
   handleToDoDescriptionChange: PropTypes.func,
   handleRemoveToDo: PropTypes.func,
@@ -10,6 +11,7 @@ ToDoList.propTypes = {
 
 function ToDoList({
   toDoData,
+  toDoEditMode,
   handleToDoStatusChange,
   handleToDoDescriptionChange,
   handleRemoveToDo,
@@ -22,13 +24,14 @@ function ToDoList({
           id={item.id}
           description={item.description}
           status={item.status}
+          toDoEditMode={toDoEditMode}
           handleToDoStatusChange={handleToDoStatusChange}
           handleToDoDescriptionChange={handleToDoDescriptionChange}
           handleRemoveToDo={handleRemoveToDo}
         />
       ))
     ) : (
-      <li>Empty list</li>
+      <li>Nothing to do</li>
     )
 
   return <ul className="todolist__list">{listItemsRedered}</ul>
