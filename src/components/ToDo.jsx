@@ -17,10 +17,10 @@ function ToDo() {
     storedToDolastId = parseInt(localStorage.getItem('toDoLastId'))
   }
 
-  let [toDoData, setToDoData] = useState(storedToDoData)
-  let [toDoLastId, setToDoLastId] = useState(storedToDolastId)
-  let [toDoInput, setToDoInput] = useState('')
-  let [toDoHiddenIdInput, setToDoHiddenIdInput] = useState('')
+  const [toDoData, setToDoData] = useState(storedToDoData)
+  const [toDoLastId, setToDoLastId] = useState(storedToDolastId)
+  const [toDoInput, setToDoInput] = useState('')
+  const [toDoHiddenIdInput, setToDoHiddenIdInput] = useState('')
 
   const useFocus = () => {
     const htmlElRef = useRef(null)
@@ -95,7 +95,7 @@ function ToDo() {
 
   const handleRemoveToDo = (event) => {
     const id = parseInt(event.target.getAttribute('data-id'))
-    let toDoDataArr = toDoData.filter((item) => item.id !== id)
+    const toDoDataArr = toDoData.filter((item) => item.id !== id)
     console.log(id)
     console.log(toDoDataArr)
     saveToDoData(toDoDataArr)

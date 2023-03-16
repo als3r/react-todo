@@ -9,11 +9,11 @@ function ToDoListItem({
   handleRemoveToDo,
 }) {
   return (
-    <li key={'todo-list-item-' + id} className="todolist__item">
+    <li key={`todo-list-item-${id}`} className="todolist__item">
       <input
         type="checkbox"
         className="todolist__checkbox"
-        id={'todo-list-item-' + id}
+        id={`todo-list-item-${id}`}
         data-id={id}
         defaultChecked={status}
         onChange={handleToDoStatusChange}

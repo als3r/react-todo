@@ -20,7 +20,7 @@ function ToDoList({
         />
       ))
     ) : (
-      <li key={1}>Empty list</li>
+      <li>Empty list</li>
     )
 
   return <ul className="todolist__list">{listItemsRedered}</ul>
