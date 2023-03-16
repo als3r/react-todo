@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types'
 
 ToDoListItem.propTypes = {
-  id: PropTypes.number,
-  description: PropTypes.string,
-  status: PropTypes.bool,
-  toDoEditMode: PropTypes.bool,
-  handleToDoStatusChange: PropTypes.func,
-  handleToDoDescriptionChange: PropTypes.func,
-  handleRemoveToDo: PropTypes.func,
+  id: PropTypes.number.isRequired,
+  description: PropTypes.string.isRequired,
+  status: PropTypes.bool.isRequired,
+  toDoEditMode: PropTypes.bool.isRequired,
+  handleToDoStatusChange: PropTypes.func.isRequired,
+  handleToDoDescriptionChange: PropTypes.func.isRequired,
+  handleRemoveToDo: PropTypes.func.isRequired,
 }
 
 function ToDoListItem({

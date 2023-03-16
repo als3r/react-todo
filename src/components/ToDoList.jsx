@@ -2,11 +2,11 @@ import PropTypes from 'prop-types'
 import ToDoListItem from './ToDoListItem'
 
 ToDoList.propTypes = {
-  toDoData: PropTypes.array,
-  toDoEditMode: PropTypes.bool,
-  handleToDoStatusChange: PropTypes.func,
-  handleToDoDescriptionChange: PropTypes.func,
-  handleRemoveToDo: PropTypes.func,
+  toDoData: PropTypes.array.isRequired,
+  toDoEditMode: PropTypes.bool.isRequired,
+  handleToDoStatusChange: PropTypes.func.isRequired,
+  handleToDoDescriptionChange: PropTypes.func.isRequired,
+  handleRemoveToDo: PropTypes.func.isRequired,
 }
 
 function ToDoList({

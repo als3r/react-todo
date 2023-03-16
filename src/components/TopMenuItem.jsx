@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types'
 
 TopMenuItem.propTypes = {
-  id: PropTypes.number,
-  title: PropTypes.string,
-  route: PropTypes.string,
+  id: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  route: PropTypes.string.isRequired,
 }
 
 function TopMenuItem({ id, title, route }) {

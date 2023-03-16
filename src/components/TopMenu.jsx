@@ -1,22 +1,19 @@
-import { memo } from 'react'
+import PropTypes from 'prop-types'
 import TopMenuItem from './TopMenuItem'
 
-function TopMenu() {
-  const menuItems = [
-    { id: 0, title: 'ToDo', route: '/' },
-    { id: 1, title: 'Budget', route: '/budget' },
-  ]
+TopMenu.propTypes = {
+  menuItems: PropTypes.array.isRequired,
+}
 
-  const menuItemsRendered = memo(() =>
-    menuItems.map((item) => (
-      <TopMenuItem
-        key={item.id}
-        id={item.id}
-        title={item.title}
-        route={item.route}
-      />
-    )),
-  )
+function TopMenu({ menuItems }) {
+  const menuItemsRendered = menuItems.map((item) => (
+    <TopMenuItem
+      key={item.id}
+      id={item.id}
+      title={item.title}
+      route={item.route}
+    />
+  ))
 
   return (
     <div className="nav">
