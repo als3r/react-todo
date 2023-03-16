@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { memo } from 'react'
 import TopMenuItem from './TopMenuItem'
 
 function TopMenu() {
@@ -7,7 +7,7 @@ function TopMenu() {
     { id: 1, title: 'Budget', route: '/budget' },
   ]
 
-  const menuItemsRendered = useMemo(() =>
+  const menuItemsRendered = memo(() =>
     menuItems.map((item) => (
       <TopMenuItem
         key={item.id}
