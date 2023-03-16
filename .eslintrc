@@ -4,6 +4,7 @@
     // ...
     "react/react-in-jsx-scope": "off",
     "react/jsx-uses-react": "off",
+    "no-param-reassign": ["error", { "props": false }],
     "react/jsx-filename-extension": [
       1,
       { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
