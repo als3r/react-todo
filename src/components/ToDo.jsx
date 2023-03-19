@@ -112,7 +112,7 @@ function ToDo() {
           className="todolist__edit-mode-label"
           htmlFor="todoEditModeInput"
         >
-          Edit Mode
+          Edit
           <input
             type="checkbox"
             id="todoEditModeInput"
