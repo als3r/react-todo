@@ -106,13 +106,13 @@ function ToDo() {
 
   return (
     <div className="todolist__container">
-      <h4 className="todolist__header">To do or not to do</h4>
+      <h4 className="todolist__header">TaskMeister</h4>
       <div className="todolist__edit-mode">
         <label
           className="todolist__edit-mode-label"
           htmlFor="todoEditModeInput"
         >
-          Edit
+          Edit Mode
           <input
             type="checkbox"
             id="todoEditModeInput"

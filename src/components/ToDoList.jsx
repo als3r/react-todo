@@ -34,7 +34,7 @@ function ToDoList({
         />
       ))
     ) : (
-      <p>No tasks to display</p>
+      <p>No tasks to display or everything is done...</p>
     )
   const listTodosDoneRendered =
     listTodosDone.length > 0 &&
