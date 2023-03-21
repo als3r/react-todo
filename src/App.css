@@ -139,8 +139,13 @@ body {
   border-bottom: 1px solid #ddd;
 }
 
-.todolist__item:hover {
-  background: rgb(207, 233, 240);
+.todolist__item:hover,
+.todolist__item-input:hover,
+.todolist__item-input:focus,
+.todolist__item:hover .todolist__item-input {
+  background: #cfe9f0;
+  animation: none;
+  transition: none;
 }
 
 .todolist__item-remove {
