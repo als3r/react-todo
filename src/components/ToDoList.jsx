@@ -1,36 +1,36 @@
 import PropTypes from 'prop-types'
-import ToDoListItem from './ToDoListItem'
+import TodoListItem from './TodoListItem'
 
-ToDoList.propTypes = {
-  toDoData: PropTypes.array.isRequired,
-  toDoEditMode: PropTypes.bool.isRequired,
-  handleToDoStatusChange: PropTypes.func.isRequired,
-  handleToDoDescriptionChange: PropTypes.func.isRequired,
-  handleRemoveToDo: PropTypes.func.isRequired,
+TodoList.propTypes = {
+  todoData: PropTypes.array.isRequired,
+  todoEditMode: PropTypes.bool.isRequired,
+  handleTodoStatusChange: PropTypes.func.isRequired,
+  handleTodoDescriptionChange: PropTypes.func.isRequired,
+  handleRemoveTodo: PropTypes.func.isRequired,
 }
 
-function ToDoList({
-  toDoData,
-  toDoEditMode,
-  handleToDoStatusChange,
-  handleToDoDescriptionChange,
-  handleRemoveToDo,
+function TodoList({
+  todoData,
+  todoEditMode,
+  handleTodoStatusChange,
+  handleTodoDescriptionChange,
+  handleRemoveTodo,
 }) {
-  const listTodosInProgress = toDoData.filter((item) => item.status === false)
-  const listTodosDone = toDoData.filter((item) => item.status)
+  const listTodosInProgress = todoData.filter((item) => item.status === false)
+  const listTodosDone = todoData.filter((item) => item.status)
 
   const listTodosInProgressRendered =
     listTodosInProgress.length > 0 ? (
       listTodosInProgress.map((item) => (
-        <ToDoListItem
+        <TodoListItem
           key={item.id}
           id={item.id}
           description={item.description}
           status={item.status}
-          toDoEditMode={toDoEditMode}
-          handleToDoStatusChange={handleToDoStatusChange}
-          handleToDoDescriptionChange={handleToDoDescriptionChange}
-          handleRemoveToDo={handleRemoveToDo}
+          todoEditMode={todoEditMode}
+          handleTodoStatusChange={handleTodoStatusChange}
+          handleTodoDescriptionChange={handleTodoDescriptionChange}
+          handleRemoveTodo={handleRemoveTodo}
         />
       ))
     ) : (
@@ -39,15 +39,15 @@ function ToDoList({
   const listTodosDoneRendered =
     listTodosDone.length > 0 &&
     listTodosDone.map((item) => (
-      <ToDoListItem
+      <TodoListItem
         key={item.id}
         id={item.id}
         description={item.description}
         status={item.status}
-        toDoEditMode={toDoEditMode}
-        handleToDoStatusChange={handleToDoStatusChange}
-        handleToDoDescriptionChange={handleToDoDescriptionChange}
-        handleRemoveToDo={handleRemoveToDo}
+        todoEditMode={todoEditMode}
+        handleTodoStatusChange={handleTodoStatusChange}
+        handleTodoDescriptionChange={handleTodoDescriptionChange}
+        handleRemoveTodo={handleRemoveTodo}
       />
     ))
 
@@ -64,4 +64,4 @@ function ToDoList({
   )
 }
 
-export default ToDoList
+export default TodoList

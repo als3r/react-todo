@@ -1,107 +1,110 @@
-import { useState } from 'react'
-import ToDoList from './ToDoList'
+import { useEffect, useState } from 'react'
+import TodoList from './TodoList'
 
-function ToDo() {
-  let storedToDoData = []
-  if (localStorage.getItem('toDoData')) {
-    storedToDoData = JSON.parse(localStorage.getItem('toDoData')) ?? []
+function Todo() {
+  const LOCALSTORAGE_DATA_KEY = 'todoapp.todoData'
+  const LOCALSTORAGE_LAST_ID_KEY = 'todoapp.lastId'
+
+  const [todoData, setTodoData] = useState([])
+  const [todoLastId, setTodoLastId] = useState(0)
+  const [todoInput, setTodoInput] = useState('')
+  const [todoHiddenIdInput, setTodoHiddenIdInput] = useState('')
+  const [todoEditMode, setTodoEditMode] = useState(false)
+
+  useEffect(() => {
+    if (localStorage.getItem(LOCALSTORAGE_DATA_KEY)) {
+      const storedData = JSON.parse(localStorage.getItem(LOCALSTORAGE_DATA_KEY))
+      if (storedData) {
+        setTodoData(storedData)
+      }
+    }
+  }, [])
+
+  useEffect(() => {
+    if (localStorage.getItem(LOCALSTORAGE_LAST_ID_KEY)) {
+      const lastId = parseInt(
+        localStorage.getItem(LOCALSTORAGE_LAST_ID_KEY),
+        10,
+      )
+      if (lastId) {
+        setTodoLastId(lastId)
+      }
+    }
+  }, [])
+
+  useEffect(() => {
+    localStorage.setItem(LOCALSTORAGE_DATA_KEY, JSON.stringify(todoData))
+  }, [todoData])
+
+  useEffect(() => {
+    localStorage.setItem(LOCALSTORAGE_LAST_ID_KEY, parseInt(todoLastId, 10))
+  }, [todoLastId])
+
+  const handleTodoEditModeChange = (event) => {
+    setTodoEditMode(event.target.checked)
   }
 
-  let storedToDolastId = 0
-  if (localStorage.getItem('toDoLastId')) {
-    storedToDolastId = parseInt(localStorage.getItem('toDoLastId'), 10) ?? 1
-  }
-
-  const [toDoData, setToDoData] = useState(storedToDoData)
-  const [toDoLastId, setToDoLastId] = useState(storedToDolastId)
-  const [toDoInput, setToDoInput] = useState('')
-  const [toDoHiddenIdInput, setToDoHiddenIdInput] = useState('')
-  const [toDoEditMode, setToDoEditMode] = useState(false)
-
-  const handleToDoEditModeChange = (event) => {
-    setToDoEditMode(event.target.checked)
-  }
+  const createTodo = (id, description, status) => ({ id, description, status })
 
   const handleSubmitToDoListForm = (event) => {
     event.preventDefault()
-    if (toDoInput.length < 4) {
-      return false
-    }
+    if (todoInput.length < 4) return false
 
-    let isUpdate = false
-    if (toDoHiddenIdInput !== '' && parseInt(toDoHiddenIdInput, 10) >= 0) {
-      isUpdate = true
-    }
+    const isUpdate = parseInt(todoHiddenIdInput, 10) >= 0
 
     if (isUpdate) {
-      const editedId = parseInt(toDoHiddenIdInput, 10)
-      toDoData.map((item) => {
+      const editedId = parseInt(todoHiddenIdInput, 10)
+      todoData.map((item) => {
         if (item.id === editedId) {
-          const newToDo = {}
-          newToDo.id = item.id
-          newToDo.description = toDoInput
-          newToDo.status = item.status
-          return newToDo
+          return createTodo(item.id, todoInput, item.status)
         }
         return item
       })
-      saveToDoData(toDoData)
     } else {
-      const newToDo = {
-        id: toDoLastId + 1,
-        description: toDoInput,
-        status: false,
-      }
-      toDoData.push(newToDo)
-      saveToDoData(toDoData)
-      setToDoLastId(toDoLastId + 1)
-      localStorage.setItem('toDoLastId', parseInt(toDoLastId + 1, 10))
+      const newToDo = createTodo(todoLastId + 1, todoInput, false)
+      todoData.push(newToDo)
+      setTodoLastId(todoLastId + 1)
     }
-
-    setToDoInput('')
-    setToDoHiddenIdInput('')
+    setTodoData(todoData)
+    setTodoInput('')
+    setTodoHiddenIdInput('')
     return true
   }
 
-  const handleToDoStatusChange = (event) => {
+  const handleTodoStatusChange = (event) => {
     const isChecked = event.target.checked
     const itemId = parseInt(event.target.getAttribute('data-id'), 10)
 
-    const toDoDataArr = toDoData.map((item) => {
+    const todoDataArr = todoData.map((item) => {
       if (item.id === itemId) {
         item.status = isChecked
       }
       return item
     })
-    saveToDoData(toDoDataArr)
+    setTodoData(todoDataArr)
   }
 
-  const handleToDoDescriptionChange = (event) => {
+  const handleTodoDescriptionChange = (event) => {
     const itemId = parseInt(event.target.getAttribute('data-id'), 10)
     const description = event.target.value
 
-    const toDoDataArr = toDoData.map((item) => {
+    const todoDataArr = todoData.map((item) => {
       if (item.id === itemId) {
         item.description = description
       }
       return item
     })
-    saveToDoData(toDoDataArr)
+    setTodoData(todoDataArr)
   }
 
-  const handleRemoveToDo = (event) => {
+  const handleRemoveTodo = (event) => {
     const id = parseInt(event.target.getAttribute('data-id'), 10)
-    const toDoDataArr = toDoData.filter((item) => item.id !== id)
-    saveToDoData(toDoDataArr)
+    const todoDataArr = todoData.filter((item) => item.id !== id)
+    setTodoData(todoDataArr)
   }
 
-  function saveToDoData(arr) {
-    setToDoData(arr)
-    localStorage.setItem('toDoData', JSON.stringify(arr))
-  }
-
-  const handleToDoInputChange = (event) => {
-    setToDoInput(event.target.value)
+  const handleTodoInputChange = (event) => {
+    setTodoInput(event.target.value)
   }
 
   return (
@@ -117,8 +120,8 @@ function ToDo() {
             type="checkbox"
             id="todoEditModeInput"
             className="todolist__edit-mode-checkbox"
-            defaultValue={toDoEditMode}
-            onChange={handleToDoEditModeChange}
+            defaultValue={todoEditMode}
+            onChange={handleTodoEditModeChange}
           />
         </label>
       </div>
@@ -131,10 +134,10 @@ function ToDo() {
           type="text"
           className="todolist__input"
           placeholder="Enter todo here ..."
-          value={toDoInput}
-          onChange={handleToDoInputChange}
+          value={todoInput}
+          onChange={handleTodoInputChange}
         />
-        <input type="hidden" value={toDoHiddenIdInput} />
+        <input type="hidden" value={todoHiddenIdInput} />
         <button
           type="button"
           className="todolist__add"
@@ -143,15 +146,15 @@ function ToDo() {
           Add
         </button>
       </form>
-      <ToDoList
-        toDoData={toDoData}
-        toDoEditMode={toDoEditMode}
-        handleToDoStatusChange={handleToDoStatusChange}
-        handleToDoDescriptionChange={handleToDoDescriptionChange}
-        handleRemoveToDo={handleRemoveToDo}
+      <TodoList
+        todoData={todoData}
+        todoEditMode={todoEditMode}
+        handleTodoStatusChange={handleTodoStatusChange}
+        handleTodoDescriptionChange={handleTodoDescriptionChange}
+        handleRemoveTodo={handleRemoveTodo}
       />
     </div>
   )
 }
 
-export default ToDo
+export default Todo

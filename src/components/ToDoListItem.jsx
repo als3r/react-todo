@@ -1,23 +1,23 @@
 import PropTypes from 'prop-types'
 
-ToDoListItem.propTypes = {
+TodoListItem.propTypes = {
   id: PropTypes.number.isRequired,
   description: PropTypes.string.isRequired,
   status: PropTypes.bool.isRequired,
-  toDoEditMode: PropTypes.bool.isRequired,
-  handleToDoStatusChange: PropTypes.func.isRequired,
-  handleToDoDescriptionChange: PropTypes.func.isRequired,
-  handleRemoveToDo: PropTypes.func.isRequired,
+  todoEditMode: PropTypes.bool.isRequired,
+  handleTodoStatusChange: PropTypes.func.isRequired,
+  handleTodoDescriptionChange: PropTypes.func.isRequired,
+  handleRemoveTodo: PropTypes.func.isRequired,
 }
 
-function ToDoListItem({
+function TodoListItem({
   id,
   description,
   status,
-  toDoEditMode,
-  handleToDoStatusChange,
-  handleToDoDescriptionChange,
-  handleRemoveToDo,
+  todoEditMode,
+  handleTodoStatusChange,
+  handleTodoDescriptionChange,
+  handleRemoveTodo,
 }) {
   return (
     <li key={`todo-list-item-${id}`} className="todolist__item">
@@ -27,9 +27,9 @@ function ToDoListItem({
         id={`todo-list-item-${id}`}
         data-id={id}
         defaultChecked={status}
-        onChange={handleToDoStatusChange}
+        onChange={handleTodoStatusChange}
       />
-      {toDoEditMode && (
+      {todoEditMode && (
         <>
           <input
             type="text"
@@ -38,20 +38,20 @@ function ToDoListItem({
             }`}
             data-id={id}
             defaultValue={description}
-            onChange={handleToDoDescriptionChange}
+            onChange={handleTodoDescriptionChange}
           />
           <button
             type="button"
             className="todolist__button-remove"
             data-id={id}
-            onClick={handleRemoveToDo}
+            onClick={handleRemoveTodo}
           >
             X
           </button>
         </>
       )}
 
-      {!toDoEditMode && (
+      {!todoEditMode && (
         <label
           htmlFor={`todo-list-item-${id}`}
           className={`todolist__label ${status ? 'todolist__label--done' : ''}`}
@@ -63,4 +63,4 @@ function ToDoListItem({
   )
 }
 
-export default ToDoListItem
+export default TodoListItem
