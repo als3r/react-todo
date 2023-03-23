@@ -2,9 +2,10 @@ import PropTypes from 'prop-types'
 import Todo from '../components/Todo'
 
 TodoPage.propTypes = {
+  isLoggedIn: PropTypes.bool.isRequired,
   handleLogout: PropTypes.func.isRequired,
 }
-function TodoPage({ handleLogout }) {
+function TodoPage({ isLoggedIn, handleLogout }) {
   return (
     <div>
       <header>
@@ -13,9 +14,11 @@ function TodoPage({ handleLogout }) {
         </div>
         <nav className="top-nav">
           <li className="nav-item">
-            <button type="button" onClick={handleLogout}>
-              Logout
-            </button>
+            {isLoggedIn && (
+              <button type="button" onClick={handleLogout}>
+                Logout
+              </button>
+            )}
           </li>
         </nav>
       </header>

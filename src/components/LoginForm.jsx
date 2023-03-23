@@ -27,6 +27,9 @@ function LoginForm({ setIsLoggedIn }) {
         className="form login-form"
         onSubmit={handleLoginFormSubmit}
       >
+        <div>
+          <h4 className="form-header">LOGIN</h4>
+        </div>
         <div className="form-group">
           <div className="form-label">
             <label htmlFor="username" className="">
@@ -57,7 +60,7 @@ function LoginForm({ setIsLoggedIn }) {
           </div>
         </div>
         <div>
-          <button type="submit">Login</button>
+          <button type="submit">Submit</button>
         </div>
       </form>
     </div>

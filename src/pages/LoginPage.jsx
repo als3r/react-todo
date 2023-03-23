@@ -2,10 +2,11 @@ import PropTypes from 'prop-types'
 import LoginForm from '../components/LoginForm'
 
 LoginPage.propTypes = {
+  isLoggedIn: PropTypes.bool.isRequired,
   setIsLoggedIn: PropTypes.func.isRequired,
   handleLogout: PropTypes.func.isRequired,
 }
-function LoginPage({ setIsLoggedIn, handleLogout }) {
+function LoginPage({ isLoggedIn, setIsLoggedIn, handleLogout }) {
   return (
     <>
       <header>
@@ -14,9 +15,11 @@ function LoginPage({ setIsLoggedIn, handleLogout }) {
         </div>
         <nav className="top-nav">
           <li className="nav-item">
-            <button type="button" onClick={handleLogout}>
-              Logout
-            </button>
+            {isLoggedIn && (
+              <button type="button" onClick={handleLogout}>
+                Logout
+              </button>
+            )}
           </li>
         </nav>
       </header>

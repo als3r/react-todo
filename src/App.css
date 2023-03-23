@@ -209,7 +209,15 @@ body {
 }
 
 .form {
-  padding: 20px;
+  padding: 0px 20px 30px;
+  border: 1px solid #eee;
+  border-radius: 15px;
+  min-width: 320px;
+}
+
+.form-header {
+  text-align: center;
+  font-size: 24px;
 }
 
 .form-group {
@@ -219,16 +227,13 @@ body {
 
 .form-label {
   padding: 5px 8px;
-  font-size: 20px;
+  font-size: 16px;
   text-align: left;
 }
 
 .form-input {
   padding: 5px 8px;
-  font-size: 20px;
-}
-
-.form-input {
-  padding: 5px 8px;
-  font-size: 20px;
+  font-size: 16px;
+  box-sizing: border-box;
+  width: 100%;
 }
