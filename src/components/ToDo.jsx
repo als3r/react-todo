@@ -109,7 +109,6 @@ function Todo() {
 
   return (
     <div className="todolist__container">
-      <h4 className="todolist__header">TaskMeister</h4>
       <div className="todolist__edit-mode">
         <label
           className="todolist__edit-mode-label"

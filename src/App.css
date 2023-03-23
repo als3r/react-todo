@@ -48,7 +48,9 @@ body {
 .top-nav {
   list-style-type: none;
   display: flex;
+  flex-direction: row-reverse;
   padding-left: 0;
+  margin-bottom: 50px;
 }
 
 .top-nav__item {
@@ -194,4 +196,39 @@ body {
   height: 16px;
   line-height: 20px;
   margin-left: 5px;
+}
+
+.login-form {
+  text-align: left;
+}
+
+.login-form__username-input {
+}
+
+.login-form__password-input {
+}
+
+.form {
+  padding: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.form-label {
+  padding: 5px 8px;
+  font-size: 20px;
+  text-align: left;
+}
+
+.form-input {
+  padding: 5px 8px;
+  font-size: 20px;
+}
+
+.form-input {
+  padding: 5px 8px;
+  font-size: 20px;
 }
