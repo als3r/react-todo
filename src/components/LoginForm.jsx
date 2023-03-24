@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types'
+import { useState } from 'react'
 
 LoginForm.propTypes = {
   setIsLoggedIn: PropTypes.func.isRequired,
@@ -15,9 +16,14 @@ function LoginForm({ setIsLoggedIn }) {
     console.log(username, password, username === 'demo' && password === 'demo')
 
     if (username === 'demo' && password === 'demo') {
+      setIsError(false)
       setIsLoggedIn(true)
+    } else {
+      setIsError(true)
     }
   }
+
+  const [isError, setIsError] = useState(false)
 
   return (
     <div className="login">
@@ -31,30 +37,40 @@ function LoginForm({ setIsLoggedIn }) {
           <h4 className="form-header">LOGIN</h4>
         </div>
         <div className="form-group">
-          <div className="form-label">
-            <label htmlFor="username" className="">
+          <div className="form-label-container">
+            <label htmlFor="username" className="form-label">
               Username or email address
             </label>
           </div>
-          <div className="form-input">
+          <div className="form-input-container">
             <input
               id="username"
               type="text"
               name="username"
-              className="form-input login-form__username-input"
+              className={
+                isError
+                  ? 'form-input login-form__username-input form-input--error'
+                  : 'form-input login-form__username-input'
+              }
               placeholder="demo"
             />
           </div>
         </div>
         <div className="form-group">
-          <div className="form-label">
-            <label htmlFor="username">Password</label>
+          <div className="form-label-container">
+            <label htmlFor="username" className="form-label">
+              Password
+            </label>
           </div>
-          <div className="form-input">
+          <div className="form-input-container">
             <input
               type="password"
               name="password"
-              className="form-input login-form__password-input"
+              className={
+                isError
+                  ? 'form-input login-form__password-input form-input--error'
+                  : 'form-input login-form__password-input'
+              }
               placeholder="demo"
             />
           </div>
