@@ -13,6 +13,12 @@ function Header({ isLoggedIn, handleLogout }) {
       </div>
       <nav className="top-nav">
         <li className="nav-item">
+          <a href="/groups">New Tasklist</a>
+        </li>
+        <li className="nav-item">
+          <a href="/groups">Tasks</a>
+        </li>
+        <li className="nav-item">
           {isLoggedIn && (
             <button type="button" onClick={handleLogout}>
               Logout
