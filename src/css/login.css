@@ -1,0 +1,8 @@
+.login-form__container {
+  max-width: 320px;
+  margin: 0 auto;
+  padding-top: 150px;
+}
+.login-form {
+  text-align: left;
+}
