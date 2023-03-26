@@ -15,6 +15,7 @@ function TopMenu() {
     { id: 1, title: 'New Tasklist', route: '/tasklists' },
     { id: 2, title: 'Tasklists', route: '/tasklists' },
     { id: 3, title: 'Current Tasklist', route: '/tasklist/1' },
+    { id: 4, title: 'logout', route: '/' },
   ]
 
   const menuItemsRendered = menuItems.map((item) => (
@@ -27,8 +28,8 @@ function TopMenu() {
   ))
 
   return (
-    <div className="nav">
-      <ul className="top-nav">{menuItemsRendered}</ul>
+    <div className="navbar__top-menu-container">
+      <ul className="navbar__top-menu">{menuItemsRendered}</ul>
     </div>
   )
 }

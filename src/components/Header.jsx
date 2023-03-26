@@ -4,8 +4,10 @@ import TopMenu from './TopMenu'
 function Header() {
   return (
     <header>
-      <Logo />
-      <TopMenu />
+      <div className="container navbar__container">
+        <Logo />
+        <TopMenu />
+      </div>
     </header>
   )
 }

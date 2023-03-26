@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types'
+import { NavLink } from 'react-router-dom'
 
 TopMenuItem.propTypes = {
   id: PropTypes.number.isRequired,
@@ -8,10 +9,10 @@ TopMenuItem.propTypes = {
 
 function TopMenuItem({ id, title, route }) {
   return (
-    <li key={id} className="top-nav__item">
-      <a href={route} className="top-nav__item-link">
+    <li key={id} className="navbar__top-menu__item">
+      <NavLink to={route} className="navbar__top-menu__link" title={title}>
         {title}
-      </a>
+      </NavLink>
     </li>
   )
 }
