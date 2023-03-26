@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types'
 import { useState } from 'react'
 
-LoginForm.propTypes = {
-  setIsLoggedIn: PropTypes.func.isRequired,
-}
+// LoginForm.propTypes = {
+//   setIsLoggedIn: PropTypes.func.isRequired,
+// }
 
-function LoginForm({ setIsLoggedIn }) {
+function LoginForm() {
   function handleLoginFormSubmit(e) {
     e.preventDefault()
     const formData = new FormData(e.target)
@@ -17,7 +17,7 @@ function LoginForm({ setIsLoggedIn }) {
 
     if (username === 'demo' && password === 'demo') {
       setIsError(false)
-      setIsLoggedIn(true)
+      // setIsLoggedIn(true)
     } else {
       setIsError(true)
     }

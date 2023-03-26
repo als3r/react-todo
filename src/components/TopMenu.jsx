@@ -1,11 +1,22 @@
-import PropTypes from 'prop-types'
+import {
+  Outlet,
+  Link,
+  useLoaderData,
+  Form,
+  NavLink,
+  redirect,
+  useNavigation,
+  useSubmit,
+} from 'react-router-dom'
 import TopMenuItem from './TopMenuItem'
 
-TopMenu.propTypes = {
-  menuItems: PropTypes.array.isRequired,
-}
+function TopMenu() {
+  const menuItems = [
+    { id: 1, title: 'New Tasklist', route: '/tasklists' },
+    { id: 2, title: 'Tasklists', route: '/tasklists' },
+    { id: 3, title: 'Current Tasklist', route: '/tasklist/1' },
+  ]
 
-function TopMenu({ menuItems }) {
   const menuItemsRendered = menuItems.map((item) => (
     <TopMenuItem
       key={item.id}

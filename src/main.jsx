@@ -2,49 +2,58 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import Tasklists from './routes/tasklists'
-import Tasklist from './routes/tasklist'
-import TasklistEdit from './routes/tasklistEdit'
-import './index.css'
+import Root from './routes/root'
+import Tasklists from './routes/tasklist/index'
+import Tasklist from './routes/tasklist/view'
+import TasklistEdit from './routes/tasklist/edit'
+import ErrorPage from './pages/ErrorPage'
+import './css/index.css'
+import './css/App.css'
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Root />,
-    // errorElement: <ErrorPage />,
-    loader: rootLoader,
-    action: rootAction,
+    errorElement: <ErrorPage />,
+    // loader: rootLoader,
+    // action: rootAction,
+  },
+  {
+    path: '/tasklist',
+    element: <Tasklists />,
+    errorElement: <ErrorPage />,
     children: [
       {
-        // errorElement: <ErrorPage />,
+        errorElement: <ErrorPage />,
         children: [
-          { index: true, element: <Index /> },
-          {
-            path: 'tasklists',
-            element: <Tasklist />,
-            loader: contactLoader,
-            action: contactAction,
-          },
+          { index: true, element: <Tasklists /> },
           {
             path: 'tasklist/:tasklistId',
             element: <Tasklist />,
-            loader: contactLoader,
-            action: contactAction,
+            // loader: contactLoader,
+            // action: contactAction,
           },
           {
             path: 'tasklist/:tasklistId/edit',
-            element: <EditContact />,
-            loader: contactLoader,
-            action: editAction,
+            element: <TasklistEdit />,
+            // loader: contactLoader,
+            // action: editAction,
           },
           {
             path: 'tasklist/:tasklistId/destroy',
-            action: destroyAction,
-            errorElement: <div>Oops! There was an error.</div>,
+            // action: destroyAction,
+            // errorElement: <div>Oops! There was an error.</div>,
           },
         ],
       },
     ],
+  },
+  {
+    path: 'tasklists',
+    element: <Tasklists />,
+    errorElement: <ErrorPage />,
+    // loader: contactLoader,
+    // action: contactAction,
   },
 ])
 
