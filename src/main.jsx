@@ -2,18 +2,21 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import Tasklists from './routes/tasklists'
+import Tasklist from './routes/tasklist'
+import TasklistEdit from './routes/tasklistEdit'
 import './index.css'
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Root />,
-    errorElement: <ErrorPage />,
+    // errorElement: <ErrorPage />,
     loader: rootLoader,
     action: rootAction,
     children: [
       {
-        errorElement: <ErrorPage />,
+        // errorElement: <ErrorPage />,
         children: [
           { index: true, element: <Index /> },
           {
