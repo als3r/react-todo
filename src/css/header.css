@@ -1,7 +1,7 @@
 header {
   display: flex;
   width: 100vw;
-  background: #eee;
+  background: rgb(13 150 200 / 10%);
   margin: 0;
   padding: 0;
   height: 80px;
@@ -30,6 +30,7 @@ header {
   text-align: left;
   text-transform: uppercase;
   text-decoration: none;
+  color: midnightblue;
 }
 
 .navbar__logo-link:hover {

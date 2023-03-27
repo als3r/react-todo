@@ -1,9 +1,9 @@
-.todolist__container {
+.tasklist__container {
   max-width: 700px;
   margin: 0 auto;
 }
 
-.todolist__list-header {
+.tasklist__list-header {
   text-align: left;
   font-size: 20px;
   text-transform: uppercase;
@@ -11,7 +11,7 @@
   margin-bottom: 10px;
 }
 
-.todolist__list {
+.tasklist__list {
   list-style: none;
   text-align: left;
   justify-content: left;
@@ -19,7 +19,7 @@
   padding: 0;
 }
 
-.todolist__input {
+.tasklist__input {
   width: 100%;
   padding: 5px 8px;
   font-size: 20px;
@@ -28,12 +28,12 @@
   margin-right: 10px;
 }
 
-.todolist__form {
+.tasklist__form {
   display: flex;
   margin-bottom: 25px;
 }
 
-.todolist__label {
+.tasklist__label {
   width: 100%;
   border-left: 1px solid #ddd;
   padding-left: 10px;
@@ -43,17 +43,17 @@
   line-height: 40px;
 }
 
-.todolist__label--done {
+.tasklist__label--done {
   text-decoration: green solid line-through;
 }
 
-.todolist__checkbox {
+.tasklist__checkbox {
   width: 30px;
   height: 30px;
   margin-right: 15px;
 }
 
-.todolist__item {
+.tasklist__item {
   display: flex;
   justify-content: space-between;
   vertical-align: middle;
@@ -61,21 +61,21 @@
   border-bottom: 1px solid #ddd;
 }
 
-.todolist__item:hover,
-.todolist__item-input:hover,
-.todolist__item-input:focus,
-.todolist__item:hover .todolist__item-input {
+.tasklist__item:hover,
+.tasklist__item-input:hover,
+.tasklist__item-input:focus,
+.tasklist__item:hover .tasklist__item-input {
   background: #cfe9f0;
   animation: none;
   transition: none;
 }
 
-.todolist__item-remove {
+.tasklist__item-remove {
   display: flex;
   color: red;
 }
 
-.todolist__item-input {
+.tasklist__item-input {
   box-sizing: border-box;
   font-size: 24px;
   width: 100%;
@@ -88,30 +88,30 @@
   outline: none;
 }
 
-.todolist__item-input:focus {
+.tasklist__item-input:focus {
   font-weight: bold;
 }
 
-.todolist__item-input--done {
+.tasklist__item-input--done {
   text-decoration: green solid line-through;
 }
 
-.todolist__item-input:focus {
+.tasklist__item-input:focus {
   border: 0;
   outline: none;
 }
 
-.todolist__edit-mode {
+.tasklist__edit-mode {
   text-align: right;
   margin: 20px 0 60px;
 }
 
-.todolist__edit-mode-label {
+.tasklist__edit-mode-label {
   font-size: 20px;
   text-align: right;
 }
 
-.todolist__edit-mode-checkbox {
+.tasklist__edit-mode-checkbox {
   width: 16px;
   height: 16px;
   line-height: 20px;
