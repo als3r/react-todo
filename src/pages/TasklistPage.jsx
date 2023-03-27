@@ -1,13 +1,18 @@
-import Todo from '../components/Todo'
+import PropTypes from 'prop-types'
+import TasklistContainer from '../components/TasklistContainer'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 
-function TasklistPage() {
+TasklistPage.propTypes = {
+  tasklistId: PropTypes.number.isRequired,
+}
+
+function TasklistPage({ tasklistId }) {
   return (
     <>
       <Header />
       <main>
-        <Todo />
+        <TasklistContainer tasklistId={tasklistId} />
       </main>
       <Footer />
     </>

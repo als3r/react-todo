@@ -1,21 +1,12 @@
-import {
-  Outlet,
-  Link,
-  useLoaderData,
-  Form,
-  NavLink,
-  redirect,
-  useNavigation,
-  useSubmit,
-} from 'react-router-dom'
 import TopMenuItem from './TopMenuItem'
 
 function TopMenu() {
   const menuItems = [
-    { id: 1, title: 'New Tasklist', route: '/tasklists' },
+    { id: 1, title: 'New', route: '/tasklists' },
     { id: 2, title: 'Tasklists', route: '/tasklists' },
-    { id: 3, title: 'Current Tasklist', route: '/tasklist/1' },
-    { id: 4, title: 'logout', route: '/' },
+    { id: 3, title: 'Recurring Tasks', route: '/tasklist/1' },
+    { id: 4, title: 'Settings', route: '/tasklist/1' },
+    { id: 5, title: 'logout', route: '/' },
   ]
 
   const menuItemsRendered = menuItems.map((item) => (

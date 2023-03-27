@@ -1,4 +1,4 @@
-import Todo from '../components/Todo'
+import Tasklist from '../components/Tasklist'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 
@@ -7,7 +7,7 @@ function TasklistsPage() {
     <>
       <Header />
       <main>
-        <Todo />
+        <Tasklist />
       </main>
       <Footer />
     </>
