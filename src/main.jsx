@@ -4,8 +4,7 @@ import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Root from './routes/root'
 import Tasklists from './routes/tasklist/index'
-import Tasklist from './routes/tasklist/view'
-import TasklistEdit from './routes/tasklist/edit'
+import TasklistRoute, { loader as tasklistLoader } from './routes/tasklist/view'
 import ErrorPage from './pages/ErrorPage'
 // import './css/index.css'
 // import './css/App.css'
@@ -15,6 +14,7 @@ import './css/footer.css'
 import './css/form.css'
 import './css/login.css'
 import './css/tasklist.css'
+import './css/mobile.css'
 
 const router = createBrowserRouter([
   {
@@ -26,33 +26,40 @@ const router = createBrowserRouter([
   },
   {
     path: '/tasklist',
-    element: <Tasklists />,
+    element: <TasklistRoute />,
     errorElement: <ErrorPage />,
-    children: [
-      {
-        errorElement: <ErrorPage />,
-        children: [
-          { index: true, element: <Tasklists /> },
-          {
-            path: '/tasklist/:tasklistId',
-            element: <Tasklist />,
-            // loader: contactLoader,
-            // action: contactAction,
-          },
-          {
-            path: '/tasklist/:tasklistId/edit',
-            element: <TasklistEdit />,
-            // loader: contactLoader,
-            // action: editAction,
-          },
-          {
-            path: '/tasklist/:tasklistId/destroy',
-            // action: destroyAction,
-            // errorElement: <div>Oops! There was an error.</div>,
-          },
-        ],
-      },
-    ],
+    loader: tasklistLoader,
+    // children: [
+    //   {
+    //     errorElement: <ErrorPage />,
+    //     children: [
+    //       { index: true, element: <TasklistRoute /> },
+    //       {
+    //         path: '/tasklist/:tasklistId',
+    //         element: <TasklistRoute />,
+    //         loader: tasklistLoader,
+    //         // action: contactAction,
+    //       },
+    //       {
+    //         path: '/tasklist/:tasklistId/edit',
+    //         element: <TasklistEdit />,
+    //         // loader: contactLoader,
+    //         // action: editAction,
+    //       },
+    //       {
+    //         path: '/tasklist/:tasklistId/destroy',
+    //         // action: destroyAction,
+    //         // errorElement: <div>Oops! There was an error.</div>,
+    //       },
+    //     ],
+    //   },
+    // ],
+  },
+  {
+    path: '/tasklist/:tasklistId',
+    element: <TasklistRoute />,
+    loader: tasklistLoader,
+    // action: contactAction,
   },
   {
     path: '/tasklists',
