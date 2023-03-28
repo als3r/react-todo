@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import TasklistItem from './TasklistItem'
 
 Tasklist.propTypes = {
-  tasklistData: PropTypes.array.isRequired,
+  tasksData: PropTypes.array.isRequired,
   isEditMode: PropTypes.bool.isRequired,
   handleTaskStatusChange: PropTypes.func.isRequired,
   handleTaskDescriptionChange: PropTypes.func.isRequired,
@@ -10,16 +10,14 @@ Tasklist.propTypes = {
 }
 
 function Tasklist({
-  tasklistData,
+  tasksData,
   isEditMode,
   handleTaskStatusChange,
   handleTaskDescriptionChange,
   handleTaskRemove,
 }) {
-  const listTasksInProgress = tasklistData.filter(
-    (item) => item.isDone === false,
-  )
-  const listTasksDone = tasklistData.filter((item) => item.isDone)
+  const listTasksInProgress = tasksData.filter((item) => item.isDone === false)
+  const listTasksDone = tasksData.filter((item) => item.isDone)
 
   const listTasksInProgressRendered =
     listTasksInProgress.length > 0 ? (

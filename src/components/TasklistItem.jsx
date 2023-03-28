@@ -56,7 +56,7 @@ function TasklistItem({
           htmlFor={`task-list-item-${id}`}
           className={`tasklist__label ${isDone ? 'tasklist__label--done' : ''}`}
         >
-          {description}
+          {`#${id} | ${description}`}
         </label>
       )}
     </li>

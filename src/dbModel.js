@@ -135,11 +135,9 @@ export const dbTasklistModel = {
   retrieveWithTasks(tasklistId) {
     const tasklistsMap = this.getTasklists()
     const tasklist = tasklistsMap.get(tasklistId)
-    console.log('retrieveWithTasks')
-    console.log(tasklistsMap)
-    console.log(tasklist)
-    console.log(tasklistId)
+
     tasklist.tasks = dbTaskModel.retrieveAllForTasklist(tasklistId)
+    console.log(tasklist, 'retrieveWithTasks')
     return tasklist
   },
   retrieveAll() {
