@@ -106,19 +106,19 @@ export const dbTaskModel = {
 
 export const dbTasklistModel = {
   create(tasklist) {
-    console.log('test2')
+    // console.log('test2')
     const tasklistsMap = this.getTasklists()
     const tasklistLastId = this.getTasklistLastId()
     const newId = parseInt(tasklistLastId + 1, 10)
 
-    console.log(tasklistLastId)
-    console.log('test3')
+    // console.log(tasklistLastId)
+    // console.log('test3')
 
     tasklist.id = newId
 
-    console.log(tasklistsMap)
-    console.log(tasklist)
-    console.log(newId)
+    // console.log(tasklistsMap)
+    // console.log(tasklist)
+    // console.log(newId)
 
     tasklistsMap.set(newId, tasklist)
 
@@ -137,7 +137,7 @@ export const dbTasklistModel = {
     const tasklist = tasklistsMap.get(tasklistId)
 
     tasklist.tasks = dbTaskModel.retrieveAllForTasklist(tasklistId)
-    console.log(tasklist, 'retrieveWithTasks')
+    // console.log(tasklist, 'retrieveWithTasks')
     return tasklist
   },
   retrieveAll() {
@@ -172,10 +172,10 @@ export const dbTasklistModel = {
   },
   getTasklists() {
     if (localStorage.getItem(LS_TASKLISTS_STORAGE) === null) {
-      console.log('tasklists not exist', 'LS_TASKLISTS_STORAGE')
+      // console.log('tasklists not exist', 'LS_TASKLISTS_STORAGE')
       return new Map()
     }
-    console.log('tasklists exist', 'LS_TASKLISTS_STORAGE')
+    // console.log('tasklists exist', 'LS_TASKLISTS_STORAGE')
     const json = localStorage.getItem(LS_TASKLISTS_STORAGE)
     const tasklistsMap = jsonToMap(json)
     return tasklistsMap
