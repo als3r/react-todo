@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 // import { dbTaskModel } from '../dbModel'
 import { dbTaskModel, dbTasklistModel } from '../dbModel'
 import Tasklist from './Tasklist'
@@ -42,7 +42,7 @@ function TasklistContainer({ tasklistId }) {
 
   let tasklistData = dbTasklistModel.retrieveWithTasks(tasklistId)
 
-  console.log(tasklistData)
+  // console.log(tasklistData)
 
   // useEffect(() => {
   //   setTasklistData(dbTasklistModel.retrieveWithTasks(tasklistId))
@@ -106,8 +106,20 @@ function TasklistContainer({ tasklistId }) {
     setTaskInput(event.target.value)
   }
 
+  const listOfTasklsits = dbTasklistModel.getTasklists()
+
   return (
     <div className="tasklist__container">
+      <div className="tasklist__selector">
+        <select name="tasklist-selector" id="tasklist-selector">
+          {listOfTasklsits.forEach((obj) => (
+            <option key={obj.id} id={obj.id}>
+              {obj.name}
+            </option>
+          ))}
+        </select>
+      </div>
+
       <div className="tasklist__edit-mode">
         <label
           className="tasklist__edit-mode-label"
