@@ -3,6 +3,22 @@
   margin: 0 auto;
 }
 
+.tasklist-selector__form {
+  padding: 5px;
+}
+
+.tasklist-selector__form-header {
+  margin-top: 40px;
+  margin-bottom: 10px;
+  padding: 4px;
+  font-size: 20px;
+}
+
+.tasklist-selector__select {
+  padding: 4px 10px;
+  font-size: 20px;
+}
+
 .tasklist__list-header {
   text-align: left;
   font-size: 20px;

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 // import { dbTaskModel } from '../dbModel'
 import { dbTaskModel, dbTasklistModel } from '../dbModel'
 import Tasklist from './Tasklist'
@@ -37,23 +37,33 @@ TasklistContainer.propTypes = {
 
 function TasklistContainer({ tasklistId }) {
   // const [tasklistData, setTasklistData] = useState([])
+  const [selectedTasklistId, setSelectedTasklistId] = useState(tasklistId)
+  const [tasklistData, setTasklistData] = useState({
+    id: 0,
+    name: 'Test',
+    tasks: [],
+  })
   const [taskInput, setTaskInput] = useState('')
   const [isEditMode, setIsEditMode] = useState(false)
 
-  let tasklistData = dbTasklistModel.retrieveWithTasks(tasklistId)
+  useEffect(() => {
+    setTasklistData(
+      dbTasklistModel.retrieveWithTasks(parseInt(selectedTasklistId, 10)),
+    )
+  }, [])
 
-  // console.log(tasklistData)
-
-  // useEffect(() => {
-  //   setTasklistData(dbTasklistModel.retrieveWithTasks(tasklistId))
-  // }, [])
+  useEffect(() => {
+    setTasklistData(
+      dbTasklistModel.retrieveWithTasks(parseInt(selectedTasklistId, 10)),
+    )
+  }, [selectedTasklistId])
 
   const handleTaskEditModeChange = (event) => {
     setIsEditMode(event.target.checked)
   }
 
   const createTask = (description, isDone) => ({
-    tasklistId,
+    selectedTasklistId: parseInt(selectedTasklistId, 10),
     description,
     isDone,
   })
@@ -65,7 +75,9 @@ function TasklistContainer({ tasklistId }) {
     const newTask = createTask(taskInput, false)
 
     dbTaskModel.create(newTask)
-    tasklistData = dbTaskModel.retrieveAllForTasklist(tasklistId)
+    setTasklistData(
+      dbTaskModel.retrieveAllForTasklist(parseInt(selectedTasklistId, 10)),
+    )
     setTaskInput('')
     return true
   }
@@ -80,7 +92,7 @@ function TasklistContainer({ tasklistId }) {
       }
       return item
     })
-    tasklistData = todoDataArr
+    setTasklistData(todoDataArr)
   }
 
   const handleTaskDescriptionChange = (event) => {
@@ -93,31 +105,49 @@ function TasklistContainer({ tasklistId }) {
       }
       return item
     })
-    tasklistData = todoDataArr
+    setTasklistData(todoDataArr)
   }
 
   const handleTaskRemove = (event) => {
     const taskId = parseInt(event.target.getAttribute('data-id'), 10)
     dbTaskModel.delete(taskId)
-    tasklistData = dbTaskModel.retrieveAllForTasklist(tasklistId)
+    setTasklistData(
+      dbTaskModel.retrieveAllForTasklist(parseInt(selectedTasklistId, 10)),
+    )
   }
 
   const handleTaskInputChange = (event) => {
     setTaskInput(event.target.value)
   }
 
-  const listOfTasklsits = dbTasklistModel.getTasklists()
+  const [tasklistOptions, setTasklistOptions] = useState([])
+  useEffect(() => {
+    const arr = Array.from(dbTasklistModel.getTasklists()).map((item) => (
+      <option key={item[1].id} value={item[1].id}>
+        {`#${item[1].id} : ${item[1].name}`}
+      </option>
+    ))
+    setTasklistOptions(arr)
+  }, [])
+
+  const handleTasklistSelectChange = (event) => {
+    setSelectedTasklistId(parseInt(event.target.value, 10))
+  }
 
   return (
     <div className="tasklist__container">
       <div className="tasklist__selector">
-        <select name="tasklist-selector" id="tasklist-selector">
-          {listOfTasklsits.forEach((obj) => (
-            <option key={obj.id} id={obj.id}>
-              {obj.name}
-            </option>
-          ))}
-        </select>
+        <div className="tasklist-selector__form-header">Select Tasklist</div>
+        <form action="" className="tasklist-selector__form">
+          <select
+            name="tasklist-selector"
+            id="tasklist-selector"
+            className="tasklist-selector__select"
+            onChange={handleTasklistSelectChange}
+          >
+            {tasklistOptions}
+          </select>
+        </form>
       </div>
 
       <div className="tasklist__edit-mode">
