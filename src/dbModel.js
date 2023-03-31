@@ -55,10 +55,22 @@ export const dbTaskModel = {
     })
     return tasks
   },
-  update(taskId, task) {
+  update(taskId, updateFields) {
     const tasksMap = this.getTasks()
-    tasksMap.set(taskId, task)
-    this.setTasks(tasksMap)
+    const task = tasksMap.get(taskId)
+
+    const updateKeyValues = Object.entries(updateFields)
+    console.log(updateKeyValues)
+    if (updateKeyValues.length) {
+      updateKeyValues.forEach((keyValuePair, index) => {
+        const [key, value] = keyValuePair
+        if (key === 'isDone' || key === 'description' || key === 'tasklistId') {
+          task[key] = value
+        }
+      })
+      tasksMap.set(taskId, task)
+      this.setTasks(tasksMap)
+    }
     return true
   },
   delete(taskId) {
