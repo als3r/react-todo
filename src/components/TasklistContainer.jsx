@@ -63,7 +63,7 @@ function TasklistContainer({ tasklistId }) {
   }
 
   const createTask = (description, isDone) => ({
-    selectedTasklistId: parseInt(selectedTasklistId, 10),
+    tasklistId: parseInt(selectedTasklistId, 10),
     description,
     isDone,
   })
@@ -76,7 +76,7 @@ function TasklistContainer({ tasklistId }) {
 
     dbTaskModel.create(newTask)
     setTasklistData(
-      dbTaskModel.retrieveAllForTasklist(parseInt(selectedTasklistId, 10)),
+      dbTasklistModel.retrieveWithTasks(parseInt(selectedTasklistId, 10)),
     )
     setTaskInput('')
     return true
@@ -84,35 +84,27 @@ function TasklistContainer({ tasklistId }) {
 
   const handleTaskStatusChange = (event) => {
     const isChecked = event.target.checked
-    const itemId = parseInt(event.target.getAttribute('data-id'), 10)
-
-    const todoDataArr = tasklistData.map((item) => {
-      if (item.id === itemId) {
-        item.isDone = isChecked
-      }
-      return item
-    })
-    setTasklistData(todoDataArr)
+    const taskId = parseInt(event.target.getAttribute('data-id'), 10)
+    dbTaskModel.update(taskId, { isDone: isChecked })
+    setTasklistData(
+      dbTasklistModel.retrieveWithTasks(parseInt(selectedTasklistId, 10)),
+    )
   }
 
   const handleTaskDescriptionChange = (event) => {
-    const itemId = parseInt(event.target.getAttribute('data-id'), 10)
+    const taskId = parseInt(event.target.getAttribute('data-id'), 10)
     const description = event.target.value
-
-    const todoDataArr = tasklistData.map((item) => {
-      if (item.id === itemId) {
-        item.description = description
-      }
-      return item
-    })
-    setTasklistData(todoDataArr)
+    dbTaskModel.update(taskId, { description })
+    setTasklistData(
+      dbTasklistModel.retrieveWithTasks(parseInt(selectedTasklistId, 10)),
+    )
   }
 
   const handleTaskRemove = (event) => {
     const taskId = parseInt(event.target.getAttribute('data-id'), 10)
     dbTaskModel.delete(taskId)
     setTasklistData(
-      dbTaskModel.retrieveAllForTasklist(parseInt(selectedTasklistId, 10)),
+      dbTasklistModel.retrieveWithTasks(parseInt(selectedTasklistId, 10)),
     )
   }
 
