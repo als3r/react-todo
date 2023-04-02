@@ -60,9 +60,8 @@ export const dbTaskModel = {
     const task = tasksMap.get(taskId)
 
     const updateKeyValues = Object.entries(updateFields)
-    console.log(updateKeyValues)
     if (updateKeyValues.length) {
-      updateKeyValues.forEach((keyValuePair, index) => {
+      updateKeyValues.forEach((keyValuePair) => {
         const [key, value] = keyValuePair
         if (key === 'isDone' || key === 'description' || key === 'tasklistId') {
           task[key] = value
@@ -159,10 +158,21 @@ export const dbTasklistModel = {
     return tasklists
   },
 
-  update(tasklistId, tasklist) {
+  update(tasklistId, updateFields) {
     const tasklistsMap = this.getTasklists()
-    tasklistsMap.set(tasklistId, tasklist)
-    this.setTasklists(tasklistsMap)
+    const tasklist = tasklistsMap.get(tasklistId)
+
+    const updateKeyValues = Object.entries(updateFields)
+    if (updateKeyValues.length) {
+      updateKeyValues.forEach((keyValuePair) => {
+        const [key, value] = keyValuePair
+        if (key === 'name') {
+          tasklist[key] = value
+        }
+      })
+      tasklistsMap.set(tasklistId, tasklist)
+      this.setTasklists(tasklistsMap)
+    }
     return true
   },
   delete(tasklistId) {

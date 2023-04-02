@@ -28,6 +28,12 @@
   margin-bottom: 10px;
 }
 
+.tasklist-edit {
+  padding: 10px;
+  font-size: 24px;
+  width: 300px;
+}
+
 .tasklist__list {
   list-style: none;
   text-align: left;

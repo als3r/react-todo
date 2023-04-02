@@ -45,18 +45,44 @@ function TasklistContainer({ tasklistId }) {
   })
   const [taskInput, setTaskInput] = useState('')
   const [isEditMode, setIsEditMode] = useState(false)
+  const [tasklistName, setTasklistName] = useState('')
 
   useEffect(() => {
     setTasklistData(
       dbTasklistModel.retrieveWithTasks(parseInt(selectedTasklistId, 10)),
     )
+    const arr = Array.from(dbTasklistModel.getTasklists()).map((item) => (
+      <option key={item[1].id} value={item[1].id}>
+        {`#${item[1].id} : ${item[1].name}`}
+      </option>
+    ))
+    setTasklistOptions(arr)
   }, [])
 
   useEffect(() => {
     setTasklistData(
       dbTasklistModel.retrieveWithTasks(parseInt(selectedTasklistId, 10)),
     )
+    const arr = Array.from(dbTasklistModel.getTasklists()).map((item) => (
+      <option key={item[1].id} value={item[1].id}>
+        {`#${item[1].id} : ${item[1].name}`}
+      </option>
+    ))
+    setTasklistOptions(arr)
   }, [selectedTasklistId])
+
+  useEffect(() => {
+    setTasklistData(
+      dbTasklistModel.retrieveWithTasks(parseInt(selectedTasklistId, 10)),
+    )
+    setTasklistName(tasklistData.name)
+    const arr = Array.from(dbTasklistModel.getTasklists()).map((item) => (
+      <option key={item[1].id} value={item[1].id}>
+        {`#${item[1].id} : ${item[1].name}`}
+      </option>
+    ))
+    setTasklistOptions(arr)
+  }, [tasklistData])
 
   const handleTaskEditModeChange = (event) => {
     setIsEditMode(event.target.checked)
@@ -113,17 +139,14 @@ function TasklistContainer({ tasklistId }) {
   }
 
   const [tasklistOptions, setTasklistOptions] = useState([])
-  useEffect(() => {
-    const arr = Array.from(dbTasklistModel.getTasklists()).map((item) => (
-      <option key={item[1].id} value={item[1].id}>
-        {`#${item[1].id} : ${item[1].name}`}
-      </option>
-    ))
-    setTasklistOptions(arr)
-  }, [])
 
   const handleTasklistSelectChange = (event) => {
     setSelectedTasklistId(parseInt(event.target.value, 10))
+  }
+
+  const handleTasklistNameChange = (event) => {
+    dbTasklistModel.update(selectedTasklistId, { name: event.target.value })
+    setTasklistName(event.target.value)
   }
 
   return (
@@ -157,7 +180,17 @@ function TasklistContainer({ tasklistId }) {
           />
         </label>
       </div>
-      <div className="tasklist__form__header">{tasklistData.name}</div>
+      <div className="tasklist__form__header">
+        {!!isEditMode && (
+          <input
+            type="text"
+            className="form-input tasklist-edit"
+            value={tasklistName}
+            onChange={handleTasklistNameChange}
+          />
+        )}
+        {!isEditMode && tasklistName}
+      </div>
       <form
         action="/"
         className="tasklist__form"
