@@ -129,12 +129,12 @@ function TasklistContainer({ tasklistId }) {
   return (
     <div className="tasklist__container">
       <div className="tasklist__selector">
-        <div className="tasklist-selector__form-header">Select Tasklist</div>
+        <div className="tasklist-selector__form-header">Tasklist</div>
         <form action="" className="tasklist-selector__form">
           <select
             name="tasklist-selector"
             id="tasklist-selector"
-            className="tasklist-selector__select"
+            className="form-input tasklist-selector__select"
             onChange={handleTasklistSelectChange}
           >
             {tasklistOptions}
