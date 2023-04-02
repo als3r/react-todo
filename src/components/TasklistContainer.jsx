@@ -170,8 +170,8 @@ function TasklistContainer({ tasklistId }) {
           value={taskInput}
           onChange={handleTaskInputChange}
         />
-        <button type="submit" className="tasklist__add">
-          Add
+        <button type="submit" className="form-submit tasklist__add">
+          Enter
         </button>
       </form>
       <Tasklist
