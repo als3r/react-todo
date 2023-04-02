@@ -51,37 +51,19 @@ function TasklistContainer({ tasklistId }) {
     setTasklistData(
       dbTasklistModel.retrieveWithTasks(parseInt(selectedTasklistId, 10)),
     )
-    const arr = Array.from(dbTasklistModel.getTasklists()).map((item) => (
-      <option key={item[1].id} value={item[1].id}>
-        {`#${item[1].id} : ${item[1].name}`}
-      </option>
-    ))
-    setTasklistOptions(arr)
+    loadTasklistsOptions()
   }, [])
 
   useEffect(() => {
     setTasklistData(
       dbTasklistModel.retrieveWithTasks(parseInt(selectedTasklistId, 10)),
     )
-    const arr = Array.from(dbTasklistModel.getTasklists()).map((item) => (
-      <option key={item[1].id} value={item[1].id}>
-        {`#${item[1].id} : ${item[1].name}`}
-      </option>
-    ))
-    setTasklistOptions(arr)
+    loadTasklistsOptions()
   }, [selectedTasklistId])
 
   useEffect(() => {
-    setTasklistData(
-      dbTasklistModel.retrieveWithTasks(parseInt(selectedTasklistId, 10)),
-    )
     setTasklistName(tasklistData.name)
-    const arr = Array.from(dbTasklistModel.getTasklists()).map((item) => (
-      <option key={item[1].id} value={item[1].id}>
-        {`#${item[1].id} : ${item[1].name}`}
-      </option>
-    ))
-    setTasklistOptions(arr)
+    loadTasklistsOptions()
   }, [tasklistData])
 
   const handleTaskEditModeChange = (event) => {
@@ -138,8 +120,6 @@ function TasklistContainer({ tasklistId }) {
     setTaskInput(event.target.value)
   }
 
-  const [tasklistOptions, setTasklistOptions] = useState([])
-
   const handleTasklistSelectChange = (event) => {
     setSelectedTasklistId(parseInt(event.target.value, 10))
   }
@@ -147,6 +127,17 @@ function TasklistContainer({ tasklistId }) {
   const handleTasklistNameChange = (event) => {
     dbTasklistModel.update(selectedTasklistId, { name: event.target.value })
     setTasklistName(event.target.value)
+    loadTasklistsOptions()
+  }
+
+  const [tasklistOptions, setTasklistOptions] = useState([])
+  function loadTasklistsOptions() {
+    const arr = Array.from(dbTasklistModel.getTasklists()).map((item) => (
+      <option key={item[1].id} value={item[1].id}>
+        {`#${item[1].id} : ${item[1].name}`}
+      </option>
+    ))
+    setTasklistOptions(arr)
   }
 
   return (

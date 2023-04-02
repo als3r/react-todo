@@ -1,13 +1,20 @@
-import Tasklist from '../components/Tasklist'
+import Tasklists from '../components/Tasklists'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
+import { dbTasklistModel } from '../dbModel'
 
 function TasklistsPage() {
+  const tasklists = loadTasklists()
+
+  function loadTasklists() {
+    return dbTasklistModel.retrieveAll()
+  }
+
   return (
     <>
       <Header />
       <main>
-        <Tasklist />
+        <Tasklists tasklists={tasklists} />
       </main>
       <Footer />
     </>

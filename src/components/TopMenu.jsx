@@ -2,10 +2,10 @@ import TopMenuItem from './TopMenuItem'
 
 function TopMenu() {
   const menuItems = [
-    { id: 1, title: 'New', route: '/tasklists' },
+    // { id: 1, title: 'New', route: '/tasklists' },
     { id: 2, title: 'Tasklists', route: '/tasklists' },
-    { id: 3, title: 'Recurring Tasks', route: '/tasklist/1' },
-    { id: 4, title: 'Settings', route: '/tasklist/1' },
+    // { id: 3, title: 'Recurring Tasks', route: '/tasklist/1' },
+    // { id: 4, title: 'Settings', route: '/tasklist/1' },
     { id: 5, title: 'logout', route: '/' },
   ]
 

@@ -3,8 +3,9 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Root from './routes/root'
-import Tasklists from './routes/tasklist/index'
 import TasklistRoute, { loader as tasklistLoader } from './routes/tasklist/view'
+import TasklistsRoute from './routes/tasklist/index'
+
 import ErrorPage from './pages/ErrorPage'
 // import './css/index.css'
 // import './css/App.css'
@@ -25,37 +26,6 @@ const router = createBrowserRouter([
     // action: rootAction,
   },
   {
-    path: '/tasklist',
-    element: <TasklistRoute />,
-    errorElement: <ErrorPage />,
-    loader: tasklistLoader,
-    // children: [
-    //   {
-    //     errorElement: <ErrorPage />,
-    //     children: [
-    //       { index: true, element: <TasklistRoute /> },
-    //       {
-    //         path: '/tasklist/:tasklistId',
-    //         element: <TasklistRoute />,
-    //         loader: tasklistLoader,
-    //         // action: contactAction,
-    //       },
-    //       {
-    //         path: '/tasklist/:tasklistId/edit',
-    //         element: <TasklistEdit />,
-    //         // loader: contactLoader,
-    //         // action: editAction,
-    //       },
-    //       {
-    //         path: '/tasklist/:tasklistId/destroy',
-    //         // action: destroyAction,
-    //         // errorElement: <div>Oops! There was an error.</div>,
-    //       },
-    //     ],
-    //   },
-    // ],
-  },
-  {
     path: '/tasklist/:tasklistId',
     element: <TasklistRoute />,
     loader: tasklistLoader,
@@ -63,11 +33,42 @@ const router = createBrowserRouter([
   },
   {
     path: '/tasklists',
-    element: <Tasklists />,
+    element: <TasklistsRoute />,
     errorElement: <ErrorPage />,
     // loader: contactLoader,
     // action: contactAction,
   },
+  // {
+  //   path: '/tasklist',
+  //   element: <TasklistRoute />,
+  //   errorElement: <ErrorPage />,
+  //   loader: tasklistLoader,
+  // children: [
+  //   {
+  //     errorElement: <ErrorPage />,
+  //     children: [
+  //       { index: true, element: <TasklistRoute /> },
+  //       {
+  //         path: '/tasklist/:tasklistId',
+  //         element: <TasklistRoute />,
+  //         loader: tasklistLoader,
+  //         // action: contactAction,
+  //       },
+  //       {
+  //         path: '/tasklist/:tasklistId/edit',
+  //         element: <TasklistEdit />,
+  //         // loader: contactLoader,
+  //         // action: editAction,
+  //       },
+  //       {
+  //         path: '/tasklist/:tasklistId/destroy',
+  //         // action: destroyAction,
+  //         // errorElement: <div>Oops! There was an error.</div>,
+  //       },
+  //     ],
+  //   },
+  // ],
+  // },
 ])
 
 ReactDOM.createRoot(document.getElementById('root')).render(
