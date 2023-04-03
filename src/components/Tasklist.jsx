@@ -52,7 +52,7 @@ function Tasklist({
     ))
 
   return (
-    <>
+    <div className="tasklist__list__container">
       <ul className="tasklist__list">{listTasksInProgressRendered}</ul>
       {listTasksDoneRendered.length > 0 && (
         <>
@@ -60,7 +60,7 @@ function Tasklist({
           <ul className="tasklist__list">{listTasksDoneRendered}</ul>
         </>
       )}
-    </>
+    </div>
   )
 }
 

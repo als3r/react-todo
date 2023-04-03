@@ -155,32 +155,33 @@ function TasklistContainer({ tasklistId }) {
           </select>
         </form>
       </div>
-
-      <div className="tasklist__edit-mode">
-        <label
-          className="tasklist__edit-mode-label"
-          htmlFor="todoEditModeInput"
-        >
-          Edit Mode
-          <input
-            type="checkbox"
-            id="todoEditModeInput"
-            className="tasklist__edit-mode-checkbox"
-            defaultValue={isEditMode}
-            onChange={handleTaskEditModeChange}
-          />
-        </label>
-      </div>
-      <div className="tasklist__form__header">
-        {!!isEditMode && (
-          <input
-            type="text"
-            className="form-input tasklist-edit"
-            value={tasklistName}
-            onChange={handleTasklistNameChange}
-          />
-        )}
-        {!isEditMode && tasklistName}
+      <div className="tasklist__header__container">
+        <div className="tasklist__form__header tasklist__form__header--md">
+          {!!isEditMode && (
+            <input
+              type="text"
+              className="form-input tasklist-edit"
+              value={tasklistName}
+              onChange={handleTasklistNameChange}
+            />
+          )}
+          {!isEditMode && tasklistName}
+        </div>
+        <div className="tasklist__edit-mode">
+          <label
+            className="tasklist__edit-mode-label"
+            htmlFor="todoEditModeInput"
+          >
+            Edit Mode
+            <input
+              type="checkbox"
+              id="todoEditModeInput"
+              className="tasklist__edit-mode-checkbox"
+              defaultValue={isEditMode}
+              onChange={handleTaskEditModeChange}
+            />
+          </label>
+        </div>
       </div>
       <form
         action="/"

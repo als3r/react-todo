@@ -2,6 +2,7 @@
   max-width: 320px;
   margin: 0 auto;
   padding-top: 150px;
+  min-height: 700px;
 }
 .login-form {
   text-align: left;

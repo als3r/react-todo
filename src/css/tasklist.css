@@ -1,6 +1,7 @@
 .tasklist__container {
   max-width: 700px;
   margin: 0 auto;
+  min-height: 830px;
 }
 
 .tasklist-selector__form {
@@ -8,7 +9,7 @@
 }
 
 .tasklist-selector__form-header {
-  margin-top: 40px;
+  margin-top: 20px;
   margin-bottom: 0px;
   padding: 4px;
   font-size: 24px;
@@ -18,6 +19,13 @@
 .tasklist-selector__select {
   padding: 10px 10px;
   font-size: 20px;
+}
+
+.tasklist__list__container {
+  overflow-y: auto;
+  padding-right: 10px;
+  max-height: 500px;
+  scrollbar-width: auto;
 }
 
 .tasklist__list-header {
@@ -32,6 +40,7 @@
   padding: 10px;
   font-size: 24px;
   width: 300px;
+  text-decoration: none;
 }
 
 .tasklist__list {
@@ -61,6 +70,18 @@
   font-weight: 570;
   margin-bottom: 20px;
   text-decoration: underline;
+  display: flex;
+}
+
+.tasklist__form__header--md {
+  font-size: 24px;
+}
+
+.tasklist__header__container {
+  display: flex;
+  justify-content: space-between;
+  vertical-align: middle;
+  margin: 20px 0 0;
 }
 
 .tasklist__label {
@@ -71,6 +92,11 @@
   display: flex;
   vertical-align: middle;
   line-height: 40px;
+}
+
+.tasklist__label-md {
+  font-size: 16px;
+  font-weight: bold;
 }
 
 .tasklist__label--done {
@@ -91,6 +117,10 @@
   border-bottom: 1px solid #ddd;
 }
 
+.tasklist__item {
+  padding: 4px 0;
+}
+
 .tasklist__item:hover,
 .tasklist__item-input:hover,
 .tasklist__item-input:focus,
@@ -105,6 +135,10 @@
   color: red;
 }
 
+.tasklist__button-remove {
+  cursor: pointer;
+}
+
 .tasklist__item-input {
   box-sizing: border-box;
   font-size: 24px;
@@ -116,6 +150,10 @@
   border: 0;
   border-left: 1px solid #eee;
   outline: none;
+}
+
+.tasklist__item-input--md {
+  font-size: 18px;
 }
 
 .tasklist__item-input:focus {
@@ -132,8 +170,9 @@
 }
 
 .tasklist__edit-mode {
+  display: inline-flex;
+  justify-content: space-between;
   text-align: right;
-  margin: 20px 0 60px;
 }
 
 .tasklist__edit-mode-label {

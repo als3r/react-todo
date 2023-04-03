@@ -20,7 +20,10 @@ function TasklistItem({
   handleTaskRemove,
 }) {
   return (
-    <li key={`task-list-item-${id}`} className="tasklist__item">
+    <li
+      key={`task-list-item-${id}`}
+      className="tasklist__item tasklist__item--md"
+    >
       <input
         type="checkbox"
         className="tasklist__checkbox"
@@ -33,7 +36,7 @@ function TasklistItem({
         <>
           <input
             type="text"
-            className={`tasklist__item-input ${
+            className={`tasklist__item-input tasklist__item-input--md ${
               isDone ? 'tasklist__item-input--done' : ''
             }`}
             data-id={id}
@@ -54,7 +57,9 @@ function TasklistItem({
       {!isEditMode && (
         <label
           htmlFor={`task-list-item-${id}`}
-          className={`tasklist__label ${isDone ? 'tasklist__label--done' : ''}`}
+          className={`tasklist__label tasklist__label-md ${
+            isDone ? 'tasklist__label--done' : ''
+          }`}
         >
           {`#${id} | ${description}`}
         </label>
