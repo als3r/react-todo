@@ -17,6 +17,7 @@ import './css/footer.css'
 import './css/form.css'
 import './css/login.css'
 import './css/tasklist.css'
+import './css/board.css'
 import './css/mobile.css'
 
 const router = createBrowserRouter([

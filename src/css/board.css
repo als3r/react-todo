@@ -1,0 +1,21 @@
+.board__container {
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  vertical-align: middle;
+  padding: 40px;
+}
+
+.board__element {
+  box-sizing: border-box;
+  min-width: 360px;
+  max-width: 600px;
+  min-height: 200px;
+  display: flex;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #333;
+  margin-bottom: 20px;
+}
