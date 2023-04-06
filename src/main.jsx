@@ -5,6 +5,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Root from './routes/root'
 import TasklistRoute, { loader as tasklistLoader } from './routes/tasklist/view'
 import TasklistsRoute from './routes/tasklist/index'
+import NewTasklistRoute from './routes/tasklist/create'
+import BoardRoute from './routes/board/index'
 
 import ErrorPage from './pages/ErrorPage'
 // import './css/index.css'
@@ -34,6 +36,20 @@ const router = createBrowserRouter([
   {
     path: '/tasklists',
     element: <TasklistsRoute />,
+    errorElement: <ErrorPage />,
+    // loader: contactLoader,
+    // action: contactAction,
+  },
+  {
+    path: '/board',
+    element: <BoardRoute />,
+    errorElement: <ErrorPage />,
+    // loader: contactLoader,
+    // action: contactAction,
+  },
+  {
+    path: '/new-tasklist',
+    element: <NewTasklistRoute />,
     errorElement: <ErrorPage />,
     // loader: contactLoader,
     // action: contactAction,

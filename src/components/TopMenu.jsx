@@ -6,7 +6,8 @@ function TopMenu() {
     { id: 2, title: 'Tasklists', route: '/tasklists' },
     // { id: 3, title: 'Recurring Tasks', route: '/tasklist/1' },
     // { id: 4, title: 'Settings', route: '/tasklist/1' },
-    { id: 5, title: 'logout', route: '/' },
+    { id: 5, title: 'Board', route: '/board' },
+    { id: 6, title: 'logout', route: '/' },
   ]
 
   const menuItemsRendered = menuItems.map((item) => (
