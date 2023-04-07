@@ -157,6 +157,12 @@ export const dbTasklistModel = {
     tasklistsMap.forEach((item) => tasklists.push(item))
     return tasklists
   },
+  retrieveAllWithTasks(offset, limit) {
+    const tasklistsMap = this.getTasklists()
+    const tasklists = []
+    tasklistsMap.forEach((item) => tasklists.push(item))
+    return tasklists
+  },
 
   update(tasklistId, updateFields) {
     const tasklistsMap = this.getTasklists()
