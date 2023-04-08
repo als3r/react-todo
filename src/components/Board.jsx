@@ -1,13 +1,14 @@
 import { Link } from 'react-router-dom'
 import { dbTasklistModel } from '../dbModel'
-import Tasklist from 'Tasklist'
 
 function Board() {
   const tasklists = loadTasklists()
 
   function loadTasklists() {
-    return dbTasklistModel.retrieveAll()
+    return dbTasklistModel.retrieveAllWithTasks()
   }
+
+  console.log(loadTasklists())
 
   const boardRendered = tasklists.map((item) => (
     <div className="board__element" key={item.id}>
