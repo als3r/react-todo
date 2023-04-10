@@ -17,7 +17,11 @@ function Board() {
           #{item.id}: {item.name}
         </Link>
       </div>
-      <ul></ul>
+      <ul className="board__element-tasks">
+        {item.tasks.map((task) => (
+          <li className="board__element-task">{task.description}</li>
+        ))}
+      </ul>
     </div>
   ))
 

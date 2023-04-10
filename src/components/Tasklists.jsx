@@ -7,7 +7,7 @@ Tasklists.propTypes = {
 
 function Tasklists({ tasklists }) {
   const tasklistsRendered = tasklists.map((item) => (
-    <li className="tasklists__item">
+    <li className="tasklists__item" key={item.id}>
       <Link to={`/tasklist/${item.id}`}>
         #{item.id}: {item.name}
       </Link>
