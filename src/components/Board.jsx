@@ -19,7 +19,13 @@ function Board() {
       </div>
       <ul className="board__element-tasks">
         {item.tasks.map((task) => (
-          <li className="board__element-task">{task.description}</li>
+          <li
+            className={`board__element-task ${
+              task.isDone && 'board__element-task--done'
+            }`}
+          >
+            {task.description}
+          </li>
         ))}
       </ul>
     </div>
