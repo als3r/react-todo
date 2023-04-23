@@ -1,9 +1,26 @@
 import { Link } from 'react-router-dom'
-import { dbTasklistModel } from '../dbModel'
+import { dbTaskModel, dbTasklistModel } from '../dbModel'
 import TasklistItem from './TasklistItem'
 
 function Board() {
   const tasklists = loadTasklists()
+
+  const handleTaskStatusChange = (event) => {
+    const isChecked = event.target.checked
+    const taskId = parseInt(event.target.getAttribute('data-id'), 10)
+    dbTaskModel.update(taskId, { isDone: isChecked })
+  }
+
+  const handleTaskDescriptionChange = (event) => {
+    const taskId = parseInt(event.target.getAttribute('data-id'), 10)
+    const description = event.target.value
+    dbTaskModel.update(taskId, { description })
+  }
+
+  const handleTaskRemove = (event) => {
+    const taskId = parseInt(event.target.getAttribute('data-id'), 10)
+    dbTaskModel.delete(taskId)
+  }
 
   function loadTasklists() {
     return dbTasklistModel.retrieveAllWithTasks()
@@ -23,9 +40,9 @@ function Board() {
             description={task.description}
             isDone={task.isDone}
             isEditMode={false}
-            handleTaskStatusChange=""
-            handleTaskDescriptionChange=""
-            handleTaskRemove=""
+            handleTaskStatusChange={handleTaskStatusChange}
+            handleTaskDescriptionChange={handleTaskDescriptionChange}
+            handleTaskRemove={handleTaskRemove}
           />
         ))}
         {filterTasksDone(item.tasks).map((task) => (
@@ -34,9 +51,9 @@ function Board() {
             description={task.description}
             isDone={task.isDone}
             isEditMode={false}
-            handleTaskStatusChange=""
-            handleTaskDescriptionChange=""
-            handleTaskRemove=""
+            handleTaskStatusChange={handleTaskStatusChange}
+            handleTaskDescriptionChange={handleTaskDescriptionChange}
+            handleTaskRemove={handleTaskRemove}
           />
         ))}
       </ul>
