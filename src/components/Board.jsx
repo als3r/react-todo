@@ -29,9 +29,7 @@ function Board() {
   const boardRendered = tasklists.map((item) => (
     <div className="board__element" key={item.id}>
       <div className="board__element-header">
-        <Link to={`/tasklist/${item.id}`}>
-          #{item.id}: {item.name}
-        </Link>
+        <Link to={`/tasklist/${item.id}`}>{item.name}</Link>
       </div>
       <ul className="board__element-tasks">
         {filterTasksNotDone(item.tasks).map((task) => (

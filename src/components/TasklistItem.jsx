@@ -61,7 +61,8 @@ function TasklistItem({
             isDone ? 'tasklist__label--done' : ''
           }`}
         >
-          {`#${id} | ${description}`}
+          {`${description}`}
+          {/* {`#${id} | ${description}`} */}
         </label>
       )}
     </li>
