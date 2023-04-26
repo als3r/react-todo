@@ -1,25 +1,29 @@
 import { Link } from 'react-router-dom'
+import { useState } from 'react'
 import { dbTaskModel, dbTasklistModel } from '../dbModel'
 import TasklistItem from './TasklistItem'
 
 function Board() {
-  const tasklists = loadTasklists()
+  const [tasklists, setTasklists] = useState(loadTasklists())
 
   const handleTaskStatusChange = (event) => {
     const isChecked = event.target.checked
     const taskId = parseInt(event.target.getAttribute('data-id'), 10)
     dbTaskModel.update(taskId, { isDone: isChecked })
+    setTasklists(loadTasklists())
   }
 
   const handleTaskDescriptionChange = (event) => {
     const taskId = parseInt(event.target.getAttribute('data-id'), 10)
     const description = event.target.value
     dbTaskModel.update(taskId, { description })
+    setTasklists(loadTasklists())
   }
 
   const handleTaskRemove = (event) => {
     const taskId = parseInt(event.target.getAttribute('data-id'), 10)
     dbTaskModel.delete(taskId)
+    setTasklists(loadTasklists())
   }
 
   function loadTasklists() {
