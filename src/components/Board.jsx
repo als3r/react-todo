@@ -36,18 +36,7 @@ function Board() {
         <Link to={`/tasklist/${item.id}`}>{item.name}</Link>
       </div>
       <ul className="board__element-tasks">
-        {filterTasksNotDone(item.tasks).map((task) => (
-          <TasklistItem
-            id={task.id}
-            description={task.description}
-            isDone={task.isDone}
-            isEditMode={false}
-            handleTaskStatusChange={handleTaskStatusChange}
-            handleTaskDescriptionChange={handleTaskDescriptionChange}
-            handleTaskRemove={handleTaskRemove}
-          />
-        ))}
-        {filterTasksDone(item.tasks).map((task) => (
+        {item.tasks.map((task) => (
           <TasklistItem
             id={task.id}
             description={task.description}
