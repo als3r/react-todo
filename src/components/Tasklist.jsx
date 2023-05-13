@@ -21,7 +21,7 @@ function Tasklist({
 
   const listTasksAll =
     tasksData.length > 0 ? (
-      listTasksInProgress.map((item) => (
+      tasksData.map((item) => (
         <TasklistItem
           key={item.id}
           id={item.id}
